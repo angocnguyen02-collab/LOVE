@@ -1,107 +1,104 @@
 <!DOCTYPE html>
 <html lang="vi">
 <head>
-  <meta charset="UTF-8">
-  <title>LOVE</title>
+<meta charset="UTF-8">
+<title>LOVE</title>
 
-  <style>
-    body {
-      margin: 0;
-      height: 100vh;
-      background: radial-gradient(circle at top, #2b0000, #000);
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      justify-content: center;
-      overflow: hidden;
-      color: white;
-      font-family: 'Segoe UI', sans-serif;
-    }
+<style>
+body{
+  margin:0;
+  height:100vh;
+  background:radial-gradient(circle at top,#2b0000,#000);
+  display:flex;
+  flex-direction:column;
+  align-items:center;
+  justify-content:center;
+  overflow:hidden;
+  color:white;
+  font-family:'Segoe UI',sans-serif;
+}
 
-    /* TIM KIM TUYẾN */
-    .heart {
-      font-size: 120px;
-      color: #ff2d55;
-      position: relative;
-      animation: sparkle 2s infinite alternate;
-      filter: drop-shadow(0 0 15px #ff5f7e);
-    }
+/* TIM KIM TUYẾN */
+.heart{
+  font-size:120px;
+  color:#ff2d55;
+  animation:sparkle 2s infinite alternate;
+  filter:drop-shadow(0 0 20px #ff5f7e);
+  z-index:2;
+}
 
-    @keyframes sparkle {
-      0% {
-        text-shadow:
-          0 0 10px #ff5f7e,
-          0 0 20px #ff5f7e,
-          0 0 30px #ff2d55;
-        transform: scale(1);
-      }
-      100% {
-        text-shadow:
-          0 0 20px #fff,
-          0 0 40px #ff5f7e,
-          0 0 60px #ff2d55;
-        transform: scale(1.05);
-      }
-    }
+@keyframes sparkle{
+  from{
+    text-shadow:0 0 10px #ff5f7e,0 0 30px #ff2d55;
+    transform:scale(1);
+  }
+  to{
+    text-shadow:0 0 20px #fff,0 0 60px #ff2d55;
+    transform:scale(1.08);
+  }
+}
 
-    /* ÁNH SÁNG CHIẾU XUỐNG */
-    .light {
-      position: absolute;
-      top: 0;
-      width: 300px;
-      height: 400px;
-      background: radial-gradient(circle at top,
-        rgba(255,95,126,0.6),
-        rgba(255,95,126,0.15),
-        transparent);
-      animation: glow 3s infinite alternate;
-      pointer-events: none;
-    }
+/* ÁNH SÁNG CHIẾU XUỐNG */
+.light{
+  position:absolute;
+  top:0;
+  width:320px;
+  height:420px;
+  background:radial-gradient(circle at top,
+    rgba(255,95,126,.6),
+    rgba(255,95,126,.15),
+    transparent);
+  animation:glow 3s infinite alternate;
+}
 
-    @keyframes glow {
-      from { opacity: 0.4; }
-      to { opacity: 0.8; }
-    }
+@keyframes glow{
+  from{opacity:.4}
+  to{opacity:.8}
+}
 
-    /* CHỮ CHẠY RA – CHẠY VÀO */
-    .text {
-      margin-top: 40px;
-      font-size: 28px;
-      text-align: center;
-      animation: slideFade 4s infinite;
-    }
+/* CÂU CHẠY RIÊNG */
+.text{
+  margin-top:40px;
+  font-size:26px;
+  text-align:center;
+  height:40px;
+}
 
-    @keyframes slideFade {
-      0% {
-        opacity: 0;
-        transform: translateY(30px);
-      }
-      30% {
-        opacity: 1;
-        transform: translateY(0);
-      }
-      70% {
-        opacity: 1;
-        transform: translateY(0);
-      }
-      100% {
-        opacity: 0;
-        transform: translateY(-30px);
-      }
-    }
-  </style>
+.text span{
+  position:absolute;
+  opacity:0;
+  animation:slide 12s infinite;
+}
+
+.text span:nth-child(1){animation-delay:0s}
+.text span:nth-child(2){animation-delay:3s}
+.text span:nth-child(3){animation-delay:6s}
+.text span:nth-child(4){animation-delay:9s}
+
+@keyframes slide{
+  0%{opacity:0;transform:translateY(30px)}
+  10%{opacity:1;transform:translateY(0)}
+  40%{opacity:1}
+  50%{opacity:0;transform:translateY(-30px)}
+  100%{opacity:0}
+}
+</style>
 </head>
 
 <body>
 
-  <div class="light"></div>
+<div class="light"></div>
+<div class="heart">❤️</div>
 
-  <div class="heart">❤️</div>
-
-  <div class="text">
-    Chúc anh Valentine vui vẻ<br>
-    Em yêu anh nhất trên đời 💖
-  </div>
+<div class="text">
+  <span>Chúc anh Valentine vui vẻ 💕</span>
+  <span>Mong những điều tốt đẹp nhất sẽ đến với anh ✨</span>
+  <span>Em yêu anh nhất trên đời 💕</span>
+  <span>Em luôn ở đây, luôn nghĩ về anh 💖</span>
+  <span>Hãy luôn bên cạnh em nhé 💕</span>
+  <span>Yêu anh nhiều hơn mỗi ngày ❤️</span>
+  <span>Mãi Thương Ông Chú Của Em 💕</span>
+</div>
 
 </body>
 </html>
