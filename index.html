@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+<meta charset="UTF-8">
+<title>Love You ❤️</title>
+<style>
+body {
+  margin: 0;
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: #fff;
+  font-family: Arial, sans-serif;
+}
+
+#heart {
+  font-size: 120px;
+  cursor: pointer;
+  animation: pulse 1.2s infinite;
+}
+
+@keyframes pulse {
+  0% { transform: scale(1); }
+  50% { transform: scale(1.15); }
+  100% { transform: scale(1); }
+}
+
+#text {
+  position: absolute;
+  font-size: 28px;
+  color: #e6005c;
+  text-align: center;
+  opacity: 0;
+  transition: opacity 1s;
+}
+</style>
+</head>
+<body>
+
+<div id="heart">❤️</div>
+<div id="text"></div>
+
+<script>
+const messages = [
+  "Chúc anh Valentine Vui Vẻ ❤️",
+  "Em yêu anh nhất trên đời 💕",
+  "Anh là người tuyệt vời nhất với em ✨",
+  "Hãy luôn bên cạnh em nhé 💖",
+  "Chúc anh yêu của em luôn hạnh phúc 💞",
+  "Em thương anh nhiều lắm 💘"
+];
+
+let index = 0;
+const heart = document.getElementById("heart");
+const text = document.getElementById("text");
+
+heart.onclick = () => {
+  if (index >= messages.length) index = 0;
+  text.style.opacity = 0;
+  setTimeout(() => {
+    text.innerText = messages[index];
+    text.style.opacity = 1;
+    index++;
+  }, 500);
+};
+</script>
+
+</body>
+</html>
