@@ -1,70 +1,108 @@
 <!DOCTYPE html>
 <html lang="vi">
 <head>
-<meta charset="UTF-8">
-<title>Love You ❤️</title>
-<style>
-body {
-  margin: 0;
-  height: 100vh;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  background: #fff;
-  font-family: Arial, sans-serif;
-}
+  <meta charset="UTF-8">
+  <title>LOVE</title>
 
-#heart {
-  font-size: 120px;
-  cursor: pointer;
-  animation: pulse 1.2s infinite;
-}
+  <style>
+    body {
+      margin: 0;
+      height: 100vh;
+      background: radial-gradient(circle at top, #2b0000, #000);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      overflow: hidden;
+      color: white;
+      font-family: 'Segoe UI', sans-serif;
+    }
 
-@keyframes pulse {
-  0% { transform: scale(1); }
-  50% { transform: scale(1.15); }
-  100% { transform: scale(1); }
-}
+    /* TIM KIM TUYẾN */
+    .heart {
+      font-size: 120px;
+      color: #ff2d55;
+      position: relative;
+      animation: sparkle 2s infinite alternate;
+      filter: drop-shadow(0 0 15px #ff5f7e);
+    }
 
-#text {
-  position: absolute;
-  font-size: 28px;
-  color: #e6005c;
-  text-align: center;
-  opacity: 0;
-  transition: opacity 1s;
-}
-</style>
+    @keyframes sparkle {
+      0% {
+        text-shadow:
+          0 0 10px #ff5f7e,
+          0 0 20px #ff5f7e,
+          0 0 30px #ff2d55;
+        transform: scale(1);
+      }
+      100% {
+        text-shadow:
+          0 0 20px #fff,
+          0 0 40px #ff5f7e,
+          0 0 60px #ff2d55;
+        transform: scale(1.05);
+      }
+    }
+
+    /* ÁNH SÁNG CHIẾU XUỐNG */
+    .light {
+      position: absolute;
+      top: 0;
+      width: 300px;
+      height: 400px;
+      background: radial-gradient(circle at top,
+        rgba(255,95,126,0.6),
+        rgba(255,95,126,0.15),
+        transparent);
+      animation: glow 3s infinite alternate;
+      pointer-events: none;
+    }
+
+    @keyframes glow {
+      from { opacity: 0.4; }
+      to { opacity: 0.8; }
+    }
+
+    /* CHỮ CHẠY RA – CHẠY VÀO */
+    .text {
+      margin-top: 40px;
+      font-size: 28px;
+      text-align: center;
+      animation: slideFade 4s infinite;
+    }
+
+    @keyframes slideFade {
+      0% {
+        opacity: 0;
+        transform: translateY(30px);
+      }
+      30% {
+        opacity: 1;
+        transform: translateY(0);
+      }
+      70% {
+        opacity: 1;
+        transform: translateY(0);
+      }
+      100% {
+        opacity: 0;
+        transform: translateY(-30px);
+      }
+    }
+  </style>
 </head>
+
 <body>
 
-<div id="heart">❤️</div>
-<div id="text"></div>
+  <div class="light"></div>
 
-<script>
-const messages = [
-  "Chúc anh Valentine Vui Vẻ ❤️",
-  "Em yêu anh nhất trên đời 💕",
-  "Anh là người tuyệt vời nhất với em ✨",
-  "Hãy luôn bên cạnh em nhé 💖",
-  "Chúc anh yêu của em luôn hạnh phúc 💞",
-  "Em thương anh nhiều lắm 💘"
-];
+  <div class="heart">❤️</div>
 
-let index = 0;
-const heart = document.getElementById("heart");
-const text = document.getElementById("text");
-
-heart.onclick = () => {
-  if (index >= messages.length) index = 0;
-  text.style.opacity = 0;
-  setTimeout(() => {
-    text.innerText = messages[index];
-    text.style.opacity = 1;
-    index++;
-  }, 500);
-};
-</script>
+  <div class="text">
+    Chúc anh Valentine vui vẻ<br>
+    Em yêu anh nhất trên đời 💖
+  </div>
 
 </body>
 </html>
+
