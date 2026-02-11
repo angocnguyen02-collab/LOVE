@@ -1,0 +1,66 @@
+index.html
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+<meta charset="UTF-8">
+<title>Gửi anh ❤️</title>
+<style>
+body{
+  margin:0;
+  height:100vh;
+  display:flex;
+  justify-content:center;
+  align-items:center;
+  background:linear-gradient(135deg,#ff758c,#ff7eb3);
+  font-family:sans-serif;
+}
+.heart{
+  font-size:120px;
+  cursor:pointer;
+  animation:pulse 1.2s infinite;
+}
+@keyframes pulse{
+  0%{transform:scale(1)}
+  50%{transform:scale(1.25)}
+  100%{transform:scale(1)}
+}
+.text{
+  position:absolute;
+  bottom:20%;
+  font-size:26px;
+  color:white;
+  opacity:0;
+  transition:opacity 1s;
+}
+.show{opacity:1}
+</style>
+</head>
+<body>
+
+<div class="heart" onclick="nextText()">❤️</div>
+<div id="text" class="text"></div>
+
+<script>
+const msgs=[
+ "Chúc anh Valentine vui vẻ 💝",
+ "Em yêu anh nhất trên đời 💕",
+ "Anh là người tuyệt vời nhất với em ✨",
+ "Hãy luôn bên cạnh em nhé 🥰",
+ "Chúc anh yêu của em luôn hạnh phúc 💖",
+ "Em thương anh nhiều lắm ❤️"
+];
+let i=0;
+const t=document.getElementById("text");
+
+function nextText(){
+ t.classList.remove("show");
+ setTimeout(()=>{
+   t.innerText=msgs[i];
+   t.classList.add("show");
+   i=(i+1)%msgs.length;
+ },600);
+}
+</script>
+
+</body>
+</html>
