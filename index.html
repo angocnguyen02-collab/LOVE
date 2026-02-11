@@ -2,6 +2,7 @@
 <html lang="vi">
 <head>
 <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>LOVE</title>
 
 <style>
@@ -14,92 +15,118 @@ body{
   align-items:center;
   justify-content:center;
   overflow:hidden;
-  color:white;
   font-family:'Segoe UI',sans-serif;
-}
-
-/* TIM KIM TUYẾN */
-.heart{
-  font-size:120px;
-  color:#ff2d55;
-  animation:sparkle 2s infinite alternate;
-  filter:drop-shadow(0 0 20px #ff5f7e);
-  z-index:2;
-}
-
-@keyframes sparkle{
-  from{
-    text-shadow:0 0 10px #ff5f7e,0 0 30px #ff2d55;
-    transform:scale(1);
-  }
-  to{
-    text-shadow:0 0 20px #fff,0 0 60px #ff2d55;
-    transform:scale(1.08);
-  }
-}
-
-/* ÁNH SÁNG CHIẾU XUỐNG */
-.light{
-  position:absolute;
-  top:0;
-  width:320px;
-  height:420px;
-  background:radial-gradient(circle at top,
-    rgba(255,95,126,.6),
-    rgba(255,95,126,.15),
-    transparent);
-  animation:glow 3s infinite alternate;
-}
-
-@keyframes glow{
-  from{opacity:.4}
-  to{opacity:.8}
-}
-
-/* CÂU CHẠY RIÊNG */
-.text{
-  margin-top:40px;
-  font-size:26px;
+  color:white;
   text-align:center;
-  height:40px;
 }
 
-.text span{
-  position:absolute;
+/* TIM */
+.heart{
+  font-size:30vw;
+  cursor:pointer;
+  user-select:none;
+  transition:.2s;
+  filter:drop-shadow(0 0 20px #ff4d6d);
+}
+
+.heart:active{
+  transform:scale(1.1);
+}
+
+/* CHỮ */
+.text{
+  margin-top:20px;
+  font-size:5.5vw;
+  min-height:60px;
+  padding:0 20px;
   opacity:0;
-  animation:slide 12s infinite;
+  transform:translateY(20px);
+  transition:.5s;
 }
 
-.text span:nth-child(1){animation-delay:0s}
-.text span:nth-child(2){animation-delay:3s}
-.text span:nth-child(3){animation-delay:6s}
-.text span:nth-child(4){animation-delay:9s}
+.text.show{
+  opacity:1;
+  transform:translateY(0);
+}
 
-@keyframes slide{
-  0%{opacity:0;transform:translateY(30px)}
-  10%{opacity:1;transform:translateY(0)}
-  40%{opacity:1}
-  50%{opacity:0;transform:translateY(-30px)}
-  100%{opacity:0}
+/* KIM TUYẾN */
+.spark{
+  position:absolute;
+  width:6px;
+  height:6px;
+  background:gold;
+  border-radius:50%;
+  pointer-events:none;
+  animation:explode .8s ease-out forwards;
+}
+
+@keyframes explode{
+  to{
+    transform:translate(var(--x),var(--y));
+    opacity:0;
+  }
 }
 </style>
 </head>
 
 <body>
 
-<div class="light"></div>
-<div class="heart">❤️</div>
+<div class="heart" onclick="nextText()">❤️</div>
+<div class="text" id="message"></div>
 
-<div class="text">
-  <span>Chúc anh Valentine vui vẻ 💕</span>
-  <span>Mong những điều tốt đẹp nhất sẽ đến với anh ✨</span>
-  <span>Em yêu anh nhất trên đời 💕</span>
-  <span>Em luôn ở đây, luôn nghĩ về anh 💖</span>
-  <span>Hãy luôn bên cạnh em nhé 💕</span>
-  <span>Yêu anh nhiều hơn mỗi ngày ❤️</span>
-  <span>Mãi Thương Ông Chú Của Em 💕</span>
-</div>
+<script>
+const texts = [
+"Chúc anh Valentine vui vẻ 💕",
+"Mong những điều tốt đẹp nhất sẽ đến với anh ✨",
+"Em yêu anh nhất trên đời 💕",
+"Em luôn ở đây, luôn nghĩ về anh 💖",
+"Hãy luôn bên cạnh em nhé 💕",
+"Yêu anh nhiều hơn mỗi ngày ❤️",
+"Mãi Thương Ông Chú Của Em 💕"
+];
+
+let index = -1;
+const message = document.getElementById("message");
+
+function nextText(){
+  index = (index + 1) % texts.length;
+
+  message.classList.remove("show");
+  setTimeout(()=>{
+    message.innerText = texts[index];
+    message.classList.add("show");
+  },200);
+
+  explode();
+}
+
+function explode(){
+  const heart = document.querySelector(".heart");
+  const rect = heart.getBoundingClientRect();
+
+  for(let i=0;i<25;i++){
+    const spark = document.createElement("div");
+    spark.className="spark";
+    spark.style.left = rect.left + rect.width/2 + "px";
+    spark.style.top = rect.top + rect.height/2 + "px";
+
+    const angle = Math.random()*2*Math.PI;
+    const distance = 80 + Math.random()*60;
+    const x = Math.cos(angle)*distance + "px";
+    const y = Math.sin(angle)*distance + "px";
+
+    spark.style.setProperty('--x', x);
+    spark.style.setProperty('--y', y);
+
+    document.body.appendChild(spark);
+
+    setTimeout(()=>spark.remove(),800);
+  }
+}
+</script>
 
 </body>
 </html>
+
+
 
